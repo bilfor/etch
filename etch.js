@@ -2,14 +2,15 @@ const container = document.querySelector('#container');
 
 function createBox(i, dim) {
   const box = document.createElement('div');
-  box.textContent = "o ";
-  box.style = "background-color: blue; flex: 1 0 " + dim + "%";
+  box.textContent = " ";
+  box.style = "color: blue; background-color: blue; flex: 1 0 " + dim + "%; height: " + dim + "%"; 
   box.setAttribute("class", "box"); 
   box.setAttribute("id", "box" + i);
   container.appendChild(box);
   
   box.addEventListener("mouseenter", function(event) {
     event.target.style.backgroundColor = "yellow";
+    event.target.style.color = "yellow";
   })
 }
 
@@ -27,7 +28,10 @@ function noChildren(parent) {
 } 
 
 function reset() {
-  let size = prompt("New size? (ex: '3' -> new 3x3 grid)");
+  let size = 101; 
+  while(size > 100) {
+    size = prompt("New size? (ex: '3' -> new 3x3 grid) MAX = 100");
+  }
   noChildren(container);
   createGrid(size*size);
 }
